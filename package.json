@@ -1,6 +1,6 @@
 {
   "name": "smarter-drupal",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0",
   "private": true,
   "description": "Developer tooling of Smarter Chat for Drupal: commitlint, semantic-release and Prettier. The module itself is PHP, at the root of the repository.",
   "license": "GPL-2.0-or-later",
