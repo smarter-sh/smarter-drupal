@@ -1,0 +1,7 @@
+smarter_chat.settings:
+  path: '/admin/config/services/smarter-chat'
+  defaults:
+    _form: '\Drupal\smarter_chat\Form\SettingsForm'
+    _title: 'Smarter Chat'
+  requirements:
+    _permission: 'administer smarter chat'

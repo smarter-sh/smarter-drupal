@@ -1,0 +1,42 @@
+smarter_chat.settings:
+  type: config_object
+  label: 'Smarter Chat settings'
+  mapping:
+    chatbot:
+      type: uri
+      label: 'The url of the deployed LLMClient'
+    api_key:
+      type: string
+      label: 'A Smarter api key, for LLMClients that require one'
+    launcher:
+      type: boolean
+      label: 'Show the launcher on every page'
+    position:
+      type: string
+      label: "The launcher's corner"
+    label:
+      type: label
+      label: "The launcher's accessible name"
+    color:
+      type: color_hex
+      label: "The launcher button's color"
+    open:
+      type: boolean
+      label: 'Start with the launcher open'
+    script_url:
+      type: string
+      label: 'The url of a self-hosted embed.js, or empty for jsDelivr'
+
+block.settings.smarter_chat_block:
+  type: block_settings
+  label: 'Smarter Chat block'
+  mapping:
+    chatbot:
+      type: string
+      label: "The chatbot's url, or empty for the settings'"
+    height:
+      type: string
+      label: 'Height'
+    width:
+      type: string
+      label: 'Width'

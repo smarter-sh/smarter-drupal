@@ -1,0 +1,24 @@
+# The embed script of @smarter.sh/ui-chat, from jsDelivr: doc/adr/003-external-library.md. Its version is
+# EmbedConfig::EMBED_VERSION, which a unit test keeps in step. smarter_chat_library_info_alter() replaces the url
+# with the settings' script_url, for sites that host the script themselves.
+embed:
+  js:
+    https://cdn.jsdelivr.net/npm/@smarter.sh/ui-chat@0.9.0/dist/embed.js:
+      type: external
+      minified: true
+      preprocess: false
+      attributes:
+        async: true
+
+# Copies drupalSettings.smarterChat to window.SmarterChatConfig, before the embed script runs.
+config:
+  js:
+    js/smarter-chat.config.js: {}
+  dependencies:
+    - core/drupalSettings
+
+# The site-wide launcher: the configuration, then the embed script.
+launcher:
+  dependencies:
+    - smarter_chat/config
+    - smarter_chat/embed

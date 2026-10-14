@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * @file
+ * Smarter Chat: adds a Smarter chatbot to the site.
+ *
+ * The launcher is attached here, and the embed script's url is altered here.
+ * The block is src/Plugin/Block/SmarterChatBlock.php. See doc/adr/.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\smarter_chat\EmbedConfig;
+
+/**
+ * Implements hook_help().
+ */
+function smarter_chat_help(string $route_name, RouteMatchInterface $route_match): ?string {
+  if ($route_name !== 'help.page.smarter_chat') {
+    return NULL;
+  }
+  $output = '<h2>' . t('About') . '</h2>';
+  $output .= '<p>' . t('Smarter Chat adds a <a href=":smarter">Smarter</a> chatbot to the site: a chat launcher in a corner of every page, and a Smarter Chat block that puts the chat in a region. The chatbot is an LLMClient that you build and deploy on a Smarter platform; its manifest must allow this site\'s origin in <code>spec.config.prompt.allowedOrigins</code>.', [':smarter' => 'https://smarter.sh']) . '</p>';
+  $output .= '<p>' . t('Configure it in <a href=":settings">Smarter Chat settings</a>. See <a href=":docs">the documentation</a>.', [
+    ':settings' => Url::fromRoute('smarter_chat.settings')->toString(),
+    ':docs' => 'https://docs.smarter.sh/en/latest/smarter-framework/smarter-drupal.html',
+  ]) . '</p>';
+  return $output;
+}
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Attaches the launcher to every page that isn't an admin page, when it is on
+ * and a chatbot is set. Other modules can change its options, or remove it
+ * from a page, with hook_smarter_chat_launcher_alter().
+ */
+function smarter_chat_page_attachments(array &$attachments): void {
+  $config = \Drupal::config('smarter_chat.settings');
+  // The launcher depends on the settings, and on whether the route is an
+  // admin route.
+  $attachments['#cache']['tags'][] = 'config:smarter_chat.settings';
+  $attachments['#cache']['contexts'][] = 'route';
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+  $launcher = EmbedConfig::launcher($config->get() ?? []);
+  \Drupal::moduleHandler()->alter('smarter_chat_launcher', $launcher);
+  if ($launcher === []) {
+    return;
+  }
+  $attachments['#attached']['library'][] = 'smarter_chat/launcher';
+  $attachments['#attached']['drupalSettings']['smarterChat'] = $launcher;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ *
+ * Replaces the embed script's jsDelivr url with the settings' script_url, for
+ * sites that host the script themselves. See doc/adr/003-external-library.md.
+ */
+function smarter_chat_library_info_alter(array &$libraries, string $extension): void {
+  if ($extension !== 'smarter_chat' || !isset($libraries['embed']['js'])) {
+    return;
+  }
+  $url = EmbedConfig::scriptUrl(\Drupal::config('smarter_chat.settings')->get() ?? []);
+  $js = reset($libraries['embed']['js']);
+  $libraries['embed']['js'] = [$url => $js];
+}

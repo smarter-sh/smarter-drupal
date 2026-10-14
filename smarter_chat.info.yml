@@ -1,0 +1,6 @@
+name: Smarter Chat
+type: module
+description: "Adds a Smarter chatbot to the site: a chat launcher on every page, and a Smarter Chat block."
+package: Web services
+core_version_requirement: ^10.3 || ^11
+configure: smarter_chat.settings

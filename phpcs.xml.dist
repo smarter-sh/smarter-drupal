@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- The lint standard of the module: doc/adr/012-code-quality.md, skills/smarter-code-quality. -->
+<ruleset name="Smarter Chat for Drupal">
+  <description>Drupal and DrupalPractice coding standards.</description>
+  <file>.</file>
+  <exclude-pattern>vendor/*</exclude-pattern>
+  <exclude-pattern>node_modules/*</exclude-pattern>
+  <exclude-pattern>build/*</exclude-pattern>
+  <exclude-pattern>tests/smoke/*</exclude-pattern>
+  <exclude-pattern>*.md</exclude-pattern>
+  <exclude-pattern>*.json</exclude-pattern>
+  <exclude-pattern>.github/*</exclude-pattern>
+  <exclude-pattern>skills/*</exclude-pattern>
+  <exclude-pattern>doc/*</exclude-pattern>
+  <exclude-pattern>*.config.js</exclude-pattern>
+  <exclude-pattern>release.config.js</exclude-pattern>
+  <exclude-pattern>commitlint.config.js</exclude-pattern>
+  <exclude-pattern>.pre-commit-config.yaml</exclude-pattern>
+  <exclude-pattern>.mergify.yml</exclude-pattern>
+  <arg name="extensions" value="php,module,inc,install,yml"/>
+  <arg value="sp"/>
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+</ruleset>
