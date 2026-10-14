@@ -1,0 +1,8 @@
+vendor/
+node_modules/
+build/
+package-lock.json
+CHANGELOG.md
+# Drupal's yml files are formatted by Coder (PHPCS), not Prettier.
+*.yml
+!.github/**/*.yml

@@ -1,0 +1,5 @@
+smarter_chat.settings:
+  title: 'Smarter Chat'
+  description: 'Configure the Smarter chatbot and its launcher.'
+  parent: system.admin_config_services
+  route_name: smarter_chat.settings

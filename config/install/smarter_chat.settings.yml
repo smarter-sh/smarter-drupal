@@ -1,0 +1,8 @@
+chatbot: ''
+api_key: ''
+launcher: true
+position: bottom-right
+label: Chat
+color: '#ff5733'
+open: false
+script_url: ''

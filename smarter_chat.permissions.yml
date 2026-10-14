@@ -1,0 +1,4 @@
+administer smarter chat:
+  title: 'Administer Smarter Chat'
+  description: 'Set the chatbot, and its api key, which is written into every page.'
+  restrict access: true

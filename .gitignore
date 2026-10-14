@@ -1,0 +1,22 @@
+# dependencies and build output
+vendor/
+node_modules/
+build/
+composer.lock
+.phpunit.result.cache
+
+# os files
+.DS_Store
+Thumbs.db
+
+# editors
+.idea/
+*.swp
+
+# logs
+*.log
+
+# typical secrets files
+.env
+.env.*
+.npmrc
