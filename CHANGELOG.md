@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 
+## [0.1.1](https://github.com/smarter-sh/smarter-drupal/compare/v0.1.0...v0.1.1) (2026-11-02)
+
+### Bug Fixes
+
+* **embed:** load [@smarter](https://github.com/smarter).sh/ui-chat 0.39.0 ([1dc2071](https://github.com/smarter-sh/smarter-drupal/commit/1dc207121c59e78afcff8bbc9d7aa2a35c374827))
+
 ## [0.1.1-alpha.1](https://github.com/smarter-sh/smarter-drupal/compare/v0.1.0...v0.1.1-alpha.1) (2026-11-02)
 
 ### Bug Fixes
