@@ -19,7 +19,7 @@ final class EmbedConfig {
    *
    * It is also in smarter_chat.libraries.yml, which a unit test keeps in step.
    */
-  public const EMBED_VERSION = '0.39.0';
+  public const EMBED_VERSION = '1.1.7';
 
   /**
    * The defaults of the settings, as config/install has them.
